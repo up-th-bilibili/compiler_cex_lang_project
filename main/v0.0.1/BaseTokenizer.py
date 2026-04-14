@@ -1,18 +1,17 @@
-from dataclasses import dataclass
 from typing import Any,Union,List,Literal
 from enum import Enum, auto
+from dataclasses import dataclass
+Void = None.__class__
 class TokenTypes(Enum):
-    KEYWORD = auto() # for while
+    LIT = auto() # true false null
     NUMBER = auto() # 1 1.1 1/2 0xb
-    STRING = auto() # "string"
+    STR = auto() # "string"
     NAME = auto() # name
     SYMBOL = auto() # {}[]:,
-    COMMENT = auto() # //asaadsdsa
-    OTHER = auto() # 其他未顾及的类型
     EOF = auto() # End Of File
 @dataclass(frozen=True)
 class Token:
-    toktyp: Any #建议以TokenTypes作为此项类型
+    toktyp: TokenTypes
     line: int
     row: int
     store:Any = None
@@ -26,6 +25,9 @@ class Token:
         if self.store is None:
             return f"<{self.toktyp.name}>"
         return f"<{self.toktyp.name}:{self.store!r}>"
+class CompileOptions:
+    def __init__(self,args):
+        pass
 class BaseTokenizer:
     '''
     接口规则：
@@ -35,13 +37,14 @@ class BaseTokenizer:
             Union[Token,Literal[False]] 返回类
     '''
     __slots__ = ('_code','_pos','_line','_row','_lcache','_mfuncs')
-    def __init__(self,text,mfuncs=None) -> Void:
+    def __init__(self,text,mfuncs=None,options=None) -> Void:
         self._code = text
         self._pos = 0
         self._line = 0
         self._row = 0
         self._lcache = [len(i)+1 for i in text.split('\n')]
         self._mfuncs = mfuncs or tuple()
+        self.options = options or CompileOptions()
     def using(self,size=1) -> bool:
         self._pos += size
         self._row += size
