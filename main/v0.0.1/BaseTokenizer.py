@@ -25,9 +25,7 @@ class Token:
         if self.store is None:
             return f"<{self.toktyp.name}>"
         return f"<{self.toktyp.name}:{self.store!r}>"
-class CompileOptions:
-    def __init__(self,args):
-        pass
+
 class BaseTokenizer:
     '''
     接口规则：
