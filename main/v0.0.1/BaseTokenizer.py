@@ -11,7 +11,7 @@ class TokenTypes(Enum):
     EOF = auto() # End Of File
 @dataclass(frozen=True)
 class Token:
-    toktyp: TokenTypes
+    toktyp: Union[TokenTypes,Any]
     line: int
     row: int
     store:Any = None
@@ -42,7 +42,7 @@ class BaseTokenizer:
         self._row = 0
         self._lcache = [len(i)+1 for i in text.split('\n')]
         self._mfuncs = mfuncs or tuple()
-        self.options = options or CompileOptions()
+        self.options = options
     def using(self,size=1) -> bool:
         self._pos += size
         self._row += size
