@@ -1,7 +1,7 @@
 from typing import Any,Union,List,Literal
 from enum import Enum, auto
 from dataclasses import dataclass
-Void = None.__class__
+Void = None.__class__ # type: ignore
 class TokenTypes(Enum):
     LIT = auto() # true false null
     NUMBER = auto() # 1 1.1 1/2 0xb
