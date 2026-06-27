@@ -57,7 +57,7 @@ class BaseTokenizer:
         while self._pos < len(self._code):
             fallback = (self._pos,self._line,self._row)
             for i in self._mfuncs:
-                get = i(fallback)
+                get = i(fallback,tokens)
                 if get:
                     if get is not True:
                         tokens.append(get)
