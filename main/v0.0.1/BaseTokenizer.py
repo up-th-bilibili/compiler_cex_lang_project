@@ -34,7 +34,7 @@ class BaseTokenizer:
             bool 跳过类
             Union[Token,Literal[False]] 返回类
     '''
-    __slots__ = ('_code','_pos','_line','_row','_lcache','_mfuncs')
+    __slots__ = ('_code','_pos','_line','_row','_lcache','_mfuncs','options')
     def __init__(self,text,mfuncs=None,options=None) -> Void:
         self._code = text
         self._pos = 0
