@@ -1,3 +1,4 @@
+#pragma once
 class optional<T>{
     __slots__{
         bool has_value;
@@ -12,19 +13,19 @@ class optional<T>{
     void __init__(self,bool has_value,T value){
         if(self===nullptr)return;
         self->has_value = has_value;
-        self->value = value;
+        if(has_value)self->value = value;
     }
     void __init__(self,bool has_value,T* value){
         if(self===nullptr)return;
         self->has_value = has_value;
-        memcpy(&(self->value),value,sizeof(T));
+        if(has_value)memcpy(&(self->value),value,sizeof(T));
     }
     T get_value(self){
         return self->value;
     }
-    _Operator bool eq(self,optional<T> other){
+    _Operator bool eq(self,optional<T>* other){
         if(!((self->has_value)||(other->has_value)))return true;
-        if(!((self->has_value)&&(other->has_value)))return tfalse;
+        if(!((self->has_value)&&(other->has_value)))return false;
         return self->value == other->value;
     }
     _Operator bool eq(self,T other){
