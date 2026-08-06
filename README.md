@@ -10,6 +10,14 @@ The language specification is formulated by the CEI (C-extension Standards Initi
 Core team members:
 * up taihe | up-th-bilibili
 
+CEX的官方读法为直接重复3个字母的读音。
+
+how to read CEX: just read three letter.
+
+CEX的维基为https://cextension.miraheze.org。
+
+CEX wiki's URL is https://cextension.miraheze.org, and it is chinese wiki.
+
 项目维护人员目前和组织成员相同。
 
 Current maintainers are the same as core team members.
