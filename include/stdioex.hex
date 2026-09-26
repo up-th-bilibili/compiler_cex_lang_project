@@ -1,8 +1,0 @@
-void print(arguments args){ // 这份文件不适用于CEX26
-  for(size_t i = 0;i < args->length;i++){
-    char* s = _Translate<char*>(args[i]);
-    size_t sz = strlen(s);
-    fwirte(stdout,s,sz);
-    free(s);
-  }
-}
